@@ -19,6 +19,7 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 300px;
         }
         .form-group {
             margin-bottom: 15px;
@@ -33,7 +34,8 @@
             box-sizing: border-box;
         }
         .form-group button {
-            padding: 10px 20px;
+            width: 100%;
+            padding: 10px;
             background-color: #007BFF;
             color: white;
             border: none;
@@ -43,12 +45,28 @@
         .form-group button:hover {
             background-color: #0056b3;
         }
+        .form-group img {
+            width: 100%;
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body>
     <div class="form-container">
         <h2>请填写您的信息</h2>
         <form action="submit_form.php" method="POST">
+            <div class="form-group">
+                <label for="wechat-avatar">微信头像:</label>
+                <img id="wechat-avatar" src="default-avatar.png" alt="微信头像">
+                <input type="hidden" id="avatar-url" name="avatar-url">
+            </div>
+            <div class="form-group">
+                <label for="wechat-nickname">微信昵称:</label>
+                <input type="text" id="wechat-nickname" name="wechat-nickname" required>
+            </div>
+            <div class="form-group">
+                <button type="button" onclick="getWeChatInfo()">一键获取微信头像和昵称</button>
+            </div>
             <div class="form-group">
                 <label for="name">姓名:</label>
                 <input type="text" id="name" name="name" required>
@@ -62,5 +80,15 @@
             </div>
         </form>
     </div>
+
+    <script>
+        function getWeChatInfo() {
+            // 此处应结合微信的相关接口实现
+            // 示例代码为模拟获取微信头像和昵称
+            document.getElementById('wechat-avatar').src = 'example-avatar.jpg';
+            document.getElementById('avatar-url').value = 'example-avatar.jpg';
+            document.getElementById('wechat-nickname').value = '示例昵称';
+        }
+    </script>
 </body>
 </html>
