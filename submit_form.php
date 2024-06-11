@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // echo "电话: " . htmlspecialchars($phone);
 
     // 处理完数据后重定向到“已提交”页面
-    header("Location: https://example.com/success.html");
+    header("Location:  https://regenthun.github.io/CommitGuest/success.html");
     exit();
 }
 ?>
