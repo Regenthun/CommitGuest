@@ -54,7 +54,7 @@
 <body>
     <div class="form-container">
         <h2>请填写您的信息</h2>
-        <form action="submit_form.php" method="POST">
+        <form id="infoForm">
             <div class="form-group">
                 <label for="wechat-avatar">微信头像:</label>
                 <img id="wechat-avatar" src="default-avatar.png" alt="微信头像">
@@ -89,6 +89,23 @@
             document.getElementById('avatar-url').value = 'example-avatar.jpg';
             document.getElementById('wechat-nickname').value = '示例昵称';
         }
+
+        document.getElementById('infoForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const avatarUrl = document.getElementById('avatar-url').value;
+            const wechatNickname = document.getElementById('wechat-nickname').value;
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+
+            // 使用LocalStorage保存数据
+            localStorage.setItem('avatarUrl', avatarUrl);
+            localStorage.setItem('wechatNickname', wechatNickname);
+            localStorage.setItem('name', name);
+            localStorage.setItem('phone', phone);
+
+            // 跳转到成功页面
+            window.location.href = 'success.html';
+        });
     </script>
 </body>
 </html>
