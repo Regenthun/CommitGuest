@@ -28,7 +28,8 @@
             display: block;
             margin-bottom: 5px;
         }
-        .form-group input {
+        .form-group input,
+        .form-group select {
             width: 100%;
             padding: 8px;
             box-sizing: border-box;
@@ -76,6 +77,21 @@
                 <input type="tel" id="phone" name="phone" required>
             </div>
             <div class="form-group">
+                <label for="purpose">来访目的:</label>
+                <select id="purpose" name="purpose" required>
+                    <option value="客户">客户</option>
+                    <option value="合作">合作</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="visit-count">访问次数:</label>
+                <input type="number" id="visit-count" name="visit-count" required>
+            </div>
+            <div class="form-group">
+                <label for="expenditure">花费:</label>
+                <input type="number" id="expenditure" name="expenditure" required>
+            </div>
+            <div class="form-group">
                 <button type="submit">提交</button>
             </div>
         </form>
@@ -83,8 +99,7 @@
 
     <script>
         function getWeChatInfo() {
-            // 此处应结合微信的相关接口实现
-            // 示例代码为模拟获取微信头像和昵称
+            // 模拟获取微信头像和昵称
             document.getElementById('wechat-avatar').src = 'example-avatar.jpg';
             document.getElementById('avatar-url').value = 'example-avatar.jpg';
             document.getElementById('wechat-nickname').value = '示例昵称';
@@ -96,12 +111,18 @@
             const wechatNickname = document.getElementById('wechat-nickname').value;
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
+            const purpose = document.getElementById('purpose').value;
+            const visitCount = document.getElementById('visit-count').value;
+            const expenditure = document.getElementById('expenditure').value;
 
             // 使用LocalStorage保存数据
             localStorage.setItem('avatarUrl', avatarUrl);
             localStorage.setItem('wechatNickname', wechatNickname);
             localStorage.setItem('name', name);
             localStorage.setItem('phone', phone);
+            localStorage.setItem('purpose', purpose);
+            localStorage.setItem('visitCount', visitCount);
+            localStorage.setItem('expenditure', expenditure);
 
             // 跳转到成功页面
             window.location.href = 'success.html';
