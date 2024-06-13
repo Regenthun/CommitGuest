@@ -99,10 +99,23 @@
 
     <script>
         function getWeChatInfo() {
-            // 模拟获取微信头像和昵称
-            document.getElementById('wechat-avatar').src = 'example-avatar.jpg';
-            document.getElementById('avatar-url').value = 'example-avatar.jpg';
-            document.getElementById('wechat-nickname').value = '示例昵称';
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+
+            if (code) {
+                fetch(`你的服务器端用code换取access_token并获取用户信息的接口?code=${code}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('wechat-avatar').src = data.headimgurl;
+                        document.getElementById('avatar-url').value = data.headimgurl;
+                        document.getElementById('wechat-nickname').value = data.nickname;
+                    })
+                    .catch(error => {
+                        console.error('获取用户信息失败', error);
+                    });
+            } else {
+                alert('请先进行微信授权');
+            }
         }
 
         document.getElementById('infoForm').addEventListener('submit', function(event) {
@@ -127,6 +140,9 @@
             // 跳转到成功页面
             window.location.href = 'success.html';
         });
+
+        // 页面加载时，自动获取微信用户信息
+        window.onload = getWeChatInfo;
     </script>
 </body>
 </html>
