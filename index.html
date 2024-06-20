@@ -62,11 +62,7 @@
                 <input type="hidden" id="avatar-url" name="avatar-url">
             </div>
             <div class="form-group">
-                <label for="wechat-nickname">微信昵称:</label>
-                <input type="text" id="wechat-nickname" name="wechat-nickname" required>
-            </div>
-            <div class="form-group">
-                <button type="button" onclick="getWeChatInfo()">一键获取微信头像和昵称</button>
+                <button type="button" onclick="getWeChatInfo()">一键获取微信头像</button>
             </div>
             <div class="form-group">
                 <label for="name">姓名:</label>
@@ -108,7 +104,6 @@
                     .then(data => {
                         document.getElementById('wechat-avatar').src = data.headimgurl;
                         document.getElementById('avatar-url').value = data.headimgurl;
-                        document.getElementById('wechat-nickname').value = data.nickname;
                     })
                     .catch(error => {
                         console.error('获取用户信息失败', error);
@@ -121,7 +116,6 @@
         document.getElementById('infoForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const avatarUrl = document.getElementById('avatar-url').value;
-            const wechatNickname = document.getElementById('wechat-nickname').value;
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
             const purpose = document.getElementById('purpose').value;
@@ -130,7 +124,6 @@
 
             // 使用LocalStorage保存数据
             localStorage.setItem('avatarUrl', avatarUrl);
-            localStorage.setItem('wechatNickname', wechatNickname);
             localStorage.setItem('name', name);
             localStorage.setItem('phone', phone);
             localStorage.setItem('purpose', purpose);
