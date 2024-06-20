@@ -103,17 +103,11 @@
             const avatarUrl = document.getElementById('avatar-url').value;
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
-            const purpose = document.getElementById('purpose').value;
-            const visitCount = document.getElementById('visit-count').value;
-            const expenditure = document.getElementById('expenditure').value;
 
             // 使用LocalStorage保存数据
             localStorage.setItem('avatarUrl', avatarUrl);
             localStorage.setItem('name', name);
             localStorage.setItem('phone', phone);
-            localStorage.setItem('purpose', purpose);
-            localStorage.setItem('visitCount', visitCount);
-            localStorage.setItem('expenditure', expenditure);
 
             // 跳转到成功页面
             window.location.href = 'success.html';
