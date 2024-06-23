@@ -113,6 +113,7 @@
             fetch('http://139.155.145.162/visitor_system/api/crud/add.php', {
                 method: 'POST',
                 headers: {
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(requestData)
             })
