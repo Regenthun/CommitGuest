@@ -28,8 +28,7 @@
             display: block;
             margin-bottom: 5px;
         }
-        .form-group input,
-        .form-group select {
+        .form-group input {
             width: 100%;
             padding: 8px;
             box-sizing: border-box;
@@ -104,13 +103,33 @@
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
 
-            // 使用LocalStorage保存数据
-            localStorage.setItem('avatarUrl', avatarUrl);
-            localStorage.setItem('name', name);
-            localStorage.setItem('phone', phone);
+            const requestData = {
+                model: "visitor",
+                avatarUrl: avatarUrl,
+                nickName: name,
+                description: phone,
+                status: 0
+            };
 
-            // 跳转到成功页面
-            window.location.href = 'success.html';
+            fetch('你的服务器端提交接口', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.code === 200) {
+                    window.location.href = 'success.html';
+                } else {
+                    alert('提交失败: ' + data.msg);
+                }
+            })
+            .catch(error => {
+                console.error('提交失败', error);
+                alert('提交失败');
+            });
         });
 
         // 页面加载时，自动获取微信用户信息
